@@ -1,114 +1,22 @@
-.containerTable {
+.angry-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
+
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
     grid-template-areas:
-        "a a b c d e f g h i j k l l"
-        "a a b c d e f g h i j k l l"
-        "aa aa . . . . . . . . . . . ."
-        "ab ab . . . . . . . . . . . ."
-        "ac ac . . . . . . . . . . . ."
-        "ad ad . . . . . . . . . . . ."
-        "ae ae . . . . . . . . . . . ."
-        "af af . . . . . . . . . . . ."
-        "ag ag . . . . . . . . . . . ."
-        "ah ah . . . . . . . . . . . ."
-        "ai ai . . . . . . . . . . . ."
-        "aj aj . . . . . . . . . . . ."
-        "ak ak . . . . . . . . . . . ."
-        "ak ak . . . . . . . . . . . .";
-}
+        'label0 label1 label2 label3 label4 label5 label6 label7 label8 label9 label10 label11'
+        'label12 . . . . . . . . . . label43'
+        'label13 . . . . . . . . . . label42'
+        'label14 . . . . . . . . . . label41'
+        'label15 . . . . . . . . . . label40'
+        'label16 . . . . . . . . . . label39'
+        'label17 . . . . . . . . . . label38'
+        'label20 . . . . . . . . . . label35'
+        'label21 . . . . . . . . . . label34'
+        'label22 label23 label24 label25 label26 label27 label28 label29 label30 label31 label32 label33';
 
-.a {
-    grid-area: a;
-}
+    gap: 0px;
+    height: 100%;
 
-.b {
-    grid-area: b;
-}
-
-.c {
-    grid-area: c;
-}
-
-.d {
-    grid-area: d;
-}
-
-.e {
-    grid-area: e;
-}
-
-.f {
-    grid-area: f;
-}
-
-.g {
-    grid-area: g;
-}
-
-.h {
-    grid-area: h;
-}
-
-.i {
-    grid-area: i;
-}
-
-.j {
-    grid-area: j;
-}
-
-.k {
-    grid-area: k;
-}
-
-.l {
-    grid-area: l;
-}
-
-.aa {
-    grid-area: aa;
-}
-
-.ab {
-    grid-area: ab;
-}
-
-.ac {
-    grid-area: ac;
-}
-
-.ad {
-    grid-area: ad;
-}
-
-.ae {
-    grid-area: ae;
-}
-
-.af {
-    grid-area: af;
-}
-
-.ag {
-    grid-area: ag;
-}
-
-.ah {
-    grid-area: ah;
-}
-
-.ai {
-    grid-area: ai;
-}
-
-.aj {
-    grid-area: aj;
-}
-
-.ak {
-    grid-area: ak;
 }
