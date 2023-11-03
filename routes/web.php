@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameBoardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,5 @@ Route::get('/gb', function () {
 
 Route::get('/test', [App\Http\Controllers\AdminController::class, 'getGridMatrix'])->name('test');
 Route::get('/test2', [App\Http\Controllers\AdminController::class, 'test'])->name('test2');
+
+Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard');

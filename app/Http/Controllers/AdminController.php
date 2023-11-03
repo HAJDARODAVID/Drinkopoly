@@ -2,30 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FieldParameterModel;
 use App\Models\GameParameterModel;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function test(){
-        return view('test2',[
-            'template' => json_decode(GameParameterModel::where('p_name', 'game_template')->first()->p_value),
-            'matrix' => json_decode(GameParameterModel::where('p_name', 'game_matrix')->first()->p_value),
-            'fields' => GameParameterModel::where('p_name', 'game_fields_count')->first()->p_value,
-        ]);
+        dd(json_decode(GameParameterModel::where('p_name', 'game_matrix')->first()->p_value));
+        return;
     }
     
     public function getGridMatrix(){
 
         
         // self::setNewMatrix(10,14);
-        self::setNewMatrix(5,20);
+        self::setNewGameBoardLayout(5,15);
         
         return 'true';
 
     }
 
-    static public function setNewMatrix($rows,$columns){
+    static public function setNewGameBoardLayout($rows,$columns){
         $matrix=[];
         $itemCount=1;
         $string ="";
@@ -33,7 +31,7 @@ class AdminController extends Controller
         for ($i=1; $i <= $rows ; $i++) { 
             if($i == 1 || $i == $rows){
                 for ($z=1; $z <= $columns ; $z++){
-                    $string = $string . "x-" . $itemCount . " "; 
+                    $string = $string . "field-" . $itemCount . " ";
                     $itemCount++;
                 }
             }
@@ -41,7 +39,7 @@ class AdminController extends Controller
             if($i != 1 && $i != $rows){
                 for ($z=1; $z <= $columns ; $z++){
                     if($z == 1 || $z == $columns){
-                        $string = $string . "x-" . $itemCount . " ";
+                        $string = $string . "field-" . $itemCount . " ";
                         $itemCount++; 
                     }
                     if($z != 1 && $z != $columns){
@@ -80,6 +78,21 @@ class AdminController extends Controller
         ->update([
             'p_value' => json_encode($itemCount-1),
         ]);
+
+        for ($i=1; $i <= $itemCount-1 ; $i++) { 
+            if(FieldParameterModel::where('field_name', 'field-'. $i)->where('p_name', 'background_color')->get()->count()){
+                FieldParameterModel::where('field_name', 'field-'. $i)
+                ->where('p_name', 'background_color')
+                ->update(['p_value' => FieldParameterModel::FIELD_C]);
+            }else{
+                FieldParameterModel::create([
+                    'field_name' => 'field-'. $i,
+                    'p_name' => 'background_color',
+                    'p_value' => 'background: rgb(34,193,195);background: linear-gradient(0deg, rgb(170, 40, 26) 0%, rgb(201, 139, 116) 100%)',
+                ]);
+
+            }
+        }
 
     }
 }

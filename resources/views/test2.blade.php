@@ -15,7 +15,7 @@ style="
             {{ __("'") }}{{ $row }}{{ __("'") }} 
         @endforeach;
 
-    gap: 0px;
+    gap: 2px;
 
     height:850px
 ">
@@ -28,7 +28,8 @@ style="
             width: 100%;
             border-radius: 15px;
             background: rgb(34,193,195);
-            background: linear-gradient(0deg, rgb(170, 40, 26) 0%, rgb(201, 139, 116) 100%);"></div>
+            background: linear-gradient(0deg, rgb(170, 40, 26) 0%, rgb(201, 139, 116) 100%);">
+            </div>
         </div>    
     @endfor
     
