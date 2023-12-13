@@ -11,4 +11,5 @@ height:850px">
     @for ($i = 1; $i <= $fields; $i++)
         <x-gameBoard.game-board-field fieldId="{{ $i }}"></x-gameBoard.game-board-field>        
     @endfor   
+    <x-gameBoard.game-board-field fieldId="db"></x-gameBoard.game-board-field>
 </div>

@@ -13,9 +13,11 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{ url('css/gameBoard.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -77,5 +79,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

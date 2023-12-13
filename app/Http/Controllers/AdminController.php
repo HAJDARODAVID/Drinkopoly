@@ -14,19 +14,24 @@ class AdminController extends Controller
     }
     
     public function getGridMatrix(){
-
-        
-        // self::setNewMatrix(10,14);
+        //self::setNewGameBoardLayout(5,15);
         self::setNewGameBoardLayout(5,15);
         
         return 'true';
-
     }
 
     static public function setNewGameBoardLayout($rows,$columns){
         $matrix=[];
         $itemCount=1;
         $string ="";
+
+        $dashBoardW = $columns % 2 == 0 ? 8 : 7;
+        $dashBoardH = $rows % 2 == 0 ? 4 : 3;
+        $dashBoardWStart = ($columns / 2 - $dashBoardW / 2)+1;
+        $dashBoardHStart = ($rows / 2 - $dashBoardH / 2+1);
+
+        //dd($dashBoardWStart, $dashBoardHStart);
+
 
         for ($i=1; $i <= $rows ; $i++) { 
             if($i == 1 || $i == $rows){
@@ -43,10 +48,16 @@ class AdminController extends Controller
                         $itemCount++; 
                     }
                     if($z != 1 && $z != $columns){
-                        $string = $string . "o "; 
+                        if (($i >= $dashBoardHStart && $i <$dashBoardHStart+$dashBoardH) && ($z >= $dashBoardWStart && $z <$dashBoardWStart+$dashBoardW)) {
+                            $string = $string . "field-db ";
+                        } else {
+                            $string = $string . ". ";
+                        }
+                        
                     }
                 }
             }
+            //dump($string);
             $matrix[]=$string;
             $string="";
         }
