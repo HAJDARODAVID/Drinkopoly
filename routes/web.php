@@ -43,4 +43,6 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
     ->prefix('admin')
     ->group(function(){
         Route::get('/','index');
+        Route::get('/users','users')->name('users');
+        Route::get('/games','games')->name('games');
     });

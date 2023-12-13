@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>Dashboard Template · Bootstrap v5.2</title>
+    <title>ADM module</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
 
@@ -95,24 +95,7 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column">
-          @if (Route::has('dashboard'))
-            <li class="nav-item">
-              <a class="nav-link @if(Route::currentRouteName() == 'dashboard') active @endif" aria-current="page" href="{{ route('dashboard') }}">
-                <span data-feather="home" class="align-text-bottom"></span>
-                Dashboard
-              </a>
-            </li> 
-          @endif
-          @if (Route::has('fieldsEditor'))
-            <li class="nav-item">
-              <a class="nav-link @if(Route::currentRouteName() == 'fieldsEditor') active @endif" aria-current="page" href="{{ route('fieldsEditor') }}">
-                <span data-feather="home" class="align-text-bottom"></span>
-                Fields editor
-              </a>
-            </li> 
-          @endif
-        </ul>
+        <x-admin-menu-items></x-admin-menu-items>
       </div>
     </nav>
 
