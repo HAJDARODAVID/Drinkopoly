@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FieldParameterModel;
-use App\Models\GameParameterModel;
+use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\GameParameterModel;
+use App\Models\FieldParameterModel;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -112,8 +115,45 @@ class AdminController extends Controller
     }
 
     public function users(){
-        //return view('admin.dashboard');
-        return "users!!!";
+        return view('admin.users');
     }
+
+    public function oneUser($id){
+        return view('admin.user',['user' => User::where('id', $id)->first()]);
+    }
+
+    public function userUpdate(Request $request, $id){
+        $user = User::where('id', $id)->first();
+        if(isset($request['passwordReset'])){
+            $user->update([
+                'password' => Hash::make(User::RESET_PASS)
+            ]);
+            return redirect()->route('users')->with('success','User #'.$user->id.' password reset successfully');
+        }
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $user->update($request->all());
+        return redirect()->route('users')->with('success','User #'.$user->id.' has been updated successfully');
+    }
+
+    public function userDelete($id){
+        $user = User::where('id', $id)->first();
+        $user->delete();
+        return redirect()->route('users')->with('success','User #'.$user->id.' has been deleted successfully');
+    }
+
+    public function addNewUser(Request $request){
+        $request['password']= Hash::make(User::RESET_PASS);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $user = User::create($request->all());
+        return redirect()->route('users')->with('success','User: #'.$user->id.' - '.$user->name.', has been successfully added');
+    }
+
+    
     
 }

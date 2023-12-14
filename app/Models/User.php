@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const RESET_PASS = 123456;
+
     /**
      * The attributes that are mass assignable.
      *

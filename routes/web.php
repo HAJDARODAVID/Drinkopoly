@@ -44,5 +44,9 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
     ->group(function(){
         Route::get('/','index');
         Route::get('/users','users')->name('users');
+        Route::get('/user/{id}','oneUser')->name('user');
+        Route::post('/user','addNewUser')->name('addNewUser');
+        Route::put('/user/update/{id}','userUpdate')->name('userUpdate');
+        Route::delete('/user/delete/{id}','userDelete')->name('userDelete');
         Route::get('/games','games')->name('games');
     });
