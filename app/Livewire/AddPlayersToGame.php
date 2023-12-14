@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\UserInGameModel;
 use Livewire\Component;
 
 class AddPlayersToGame extends Component
@@ -15,10 +16,21 @@ class AddPlayersToGame extends Component
         $this->showModal = 1;
     }
 
+    public function addPlayerToGame($user, $game){
+        UserInGameModel::create([
+            'user_id' => $user,
+            'game_id' => $game
+        ]);
+    }
+
+    public function removePlayerFromGame($user){
+        UserInGameModel::where('user_id', $user)->delete();
+    }
+
     public function render()
     {
         return view('livewire.add-players-to-game', [
-            'users' => User::get()
+            'users' => User::with('getPlayersGame')->get()
         ]);
     }
 }

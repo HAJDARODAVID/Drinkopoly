@@ -29,10 +29,18 @@
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
                                     <td>x</td>
-                                    <td>NN</td>
+                                    <td> @isset($user->getPlayersGame->game_id) {{ $user->getPlayersGame->game_id }} @endisset</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm">JOIN</button>
-                                        <button class="btn btn-danger btn-sm">KICK OUT</button>
+                                        <button class="btn btn-success btn-sm" 
+                                            wire:click='addPlayerToGame({{ $user->id }}, {{ $gameId }})'
+                                            @if (isset($user->getPlayersGame->game_id)) {{ 'disabled' }} @endif>
+                                            JOIN
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" 
+                                            wire:click='removePlayerFromGame({{ $user->id }})'
+                                            @if (!isset($user->getPlayersGame->game_id)) {{ 'disabled' }} @endif>
+                                            KICK OUT
+                                        </button>
                                     </td>
                                 </tr>  
                             @endforeach
