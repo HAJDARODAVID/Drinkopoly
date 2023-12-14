@@ -42,11 +42,17 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
  Route::controller(AdminController::class)
     ->prefix('admin')
     ->group(function(){
+        //Main dashboard
         Route::get('/','index');
+
+        //User module
         Route::get('/users','users')->name('users');
         Route::get('/user/{id}','oneUser')->name('user');
         Route::post('/user','addNewUser')->name('addNewUser');
         Route::put('/user/update/{id}','userUpdate')->name('userUpdate');
         Route::delete('/user/delete/{id}','userDelete')->name('userDelete');
+
+        //Games module
         Route::get('/games','games')->name('games');
+        Route::post('/games','createNewGame')->name('createNewGame');
     });

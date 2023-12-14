@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\GameParameterModel;
 use App\Models\FieldParameterModel;
+use App\Models\GamesModel;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -152,6 +153,24 @@ class AdminController extends Controller
         ]);
         $user = User::create($request->all());
         return redirect()->route('users')->with('success','User: #'.$user->id.' - '.$user->name.', has been successfully added');
+    }
+
+    /**
+     * Show the games module on admin side
+     */
+    public function games(){
+        return view('admin.games');
+    }
+
+    /**
+     * Crate a new empty game with status 0
+     */
+    public function createNewGame(Request $request){
+        if ($request['createNewGame']) {
+            GamesModel::create(['status' => GamesModel::STATUS_INITIALIZED]);
+            return redirect()->route('games')->with('success','New game has been successfully created');
+        }
+
     }
 
     
