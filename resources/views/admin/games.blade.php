@@ -6,7 +6,13 @@
 </div>
 
 <div class="container">
-    <div class="row"><x-create-new-game-button></x-create-new-game-button></div>
+  @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+  @endif
+  <div class="row"><x-create-new-game-button></x-create-new-game-button></div>
+  <div class="row"><x-games-table></x-games-table></div>
 </div>
 
 @endsection

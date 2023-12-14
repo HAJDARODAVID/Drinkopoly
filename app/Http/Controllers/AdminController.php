@@ -170,7 +170,22 @@ class AdminController extends Controller
             GamesModel::create(['status' => GamesModel::STATUS_INITIALIZED]);
             return redirect()->route('games')->with('success','New game has been successfully created');
         }
+    }
 
+    public function startGame(Request $request, $id){
+        if ($request['startGame']) {
+            $game = GamesModel::where('id', $id);
+            $game->update(['status' => GamesModel::STATUS_ACTIVE]);
+            return redirect()->route('games')->with('success','Game: #'.$id.' successfully started');
+        }
+    }
+
+    public function cancelGame(Request $request, $id){
+        if ($request['cancelGame']) {
+            $game = GamesModel::where('id', $id);
+            $game->update(['status' => GamesModel::STATUS_DISABLED]);
+            return redirect()->route('games')->with('success','Game: #'.$id.' successfully canceled');
+        }
     }
 
     

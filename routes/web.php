@@ -55,4 +55,6 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
         //Games module
         Route::get('/games','games')->name('games');
         Route::post('/games','createNewGame')->name('createNewGame');
+        Route::put('/games/start/{id}','startGame')->name('startGame');
+        Route::put('/games/cancel/{id}','cancelGame')->name('cancelGame');
     });
