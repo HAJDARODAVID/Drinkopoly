@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\GameParameterModel;
 use App\Models\FieldParameterModel;
 use App\Models\GamesModel;
+use App\Models\UserInGameModel;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -182,6 +183,11 @@ class AdminController extends Controller
 
     public function cancelGame(Request $request, $id){
         if ($request['cancelGame']) {
+            $usersInGame = UserInGameModel::where('game_id', $id)->get();
+            dump($usersInGame);
+            foreach ($usersInGame as $user) {
+                UserInGameModel::where('user_id', $user->user_id)->delete();
+            }
             $game = GamesModel::where('id', $id);
             $game->update(['status' => GamesModel::STATUS_DISABLED]);
             return redirect()->route('games')->with('success','Game: #'.$id.' successfully canceled');
