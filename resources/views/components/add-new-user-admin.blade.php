@@ -6,6 +6,7 @@
         Add new user
     </button>
     
+    <!-- Modal -->
     <div class="modal" id="newUserOverAdmin" style="display: @if ($errors->any()){{ 'block' }} @endif">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

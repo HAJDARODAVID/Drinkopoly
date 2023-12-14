@@ -5,10 +5,6 @@
   <h1 class="h2">Users</h1>
 </div>
 
-
-
-
-
 <div class="container">
   @if ($message = Session::get('success'))
       <div class="alert alert-success">
