@@ -12,6 +12,7 @@
     </div>
   @endif
   <div class="row"><x-create-new-game-button></x-create-new-game-button></div>
+  <br>
   <div class="row"><x-games-table></x-games-table></div>
 </div>
 

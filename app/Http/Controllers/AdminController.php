@@ -193,7 +193,5 @@ class AdminController extends Controller
             return redirect()->route('games')->with('success','Game: #'.$id.' successfully canceled');
         }
     }
-
-    
-    
+   
 }

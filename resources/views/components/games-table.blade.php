@@ -18,14 +18,15 @@
                     <td>{{ $game->updated_at }}</td>
                     <td>
                         
-                        <a href="{{ Route('user', $game->id) }}" class="btn btn-success @if ($game->status != 0) {{ 'disabled' }} @endif" 
+                        <a href="#" class="btn btn-success @if ($game->status != 0) {{ 'disabled' }} @endif" 
                             onclick="event.preventDefault(); document.getElementById('start-game-{{ $game->id }}').submit();">
                             START
                         </a>
-                        <a href="{{ Route('user', $game->id) }}" class="btn btn-danger @if ($game->status == -1) {{ 'disabled' }} @endif"
+                        <a href="#" class="btn btn-danger @if ($game->status == -1) {{ 'disabled' }} @endif"
                             onclick="event.preventDefault(); document.getElementById('cancel-game-{{ $game->id }}').submit();">
                             CANCEL
                         </a>
+                        <x-show-game-details gameID='{{ $game->id }}'></x-show-game-details>
                         @livewire('add-players-to-game', ['status' => $game->status, 'gameId' => $game->id ] ,key($game->id))
                         <form 
                             method="POST" 

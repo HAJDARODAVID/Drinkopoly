@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserInGameModel extends Model
 {
@@ -16,4 +18,10 @@ class UserInGameModel extends Model
         'game_id',
         'user_id'
     ];
+
+    public function getPlayerInfo(): HasOne
+    {
+        return $this->hasONe(User::class, 'id','user_id');
+    }
+
 }
