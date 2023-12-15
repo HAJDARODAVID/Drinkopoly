@@ -183,15 +183,30 @@ class AdminController extends Controller
 
     public function cancelGame(Request $request, $id){
         if ($request['cancelGame']) {
-            $usersInGame = UserInGameModel::where('game_id', $id)->get();
-            dump($usersInGame);
-            foreach ($usersInGame as $user) {
-                UserInGameModel::where('user_id', $user->user_id)->delete();
-            }
+            $this->kickOutAllUsersFromGame($id);
             $game = GamesModel::where('id', $id);
             $game->update(['status' => GamesModel::STATUS_DISABLED]);
             return redirect()->route('games')->with('success','Game: #'.$id.' successfully canceled');
         }
+    }
+
+    public function deleteGame(Request $request, $id){
+        if ($request['deleteGame']) {
+            $this->kickOutAllUsersFromGame($id);
+            $game = GamesModel::where('id', $id)->delete();
+            return redirect()->route('games')->with('success','Game: #'.$id.' successfully deleted');
+        }
+    }
+
+    /**
+     * Method for kicking out all users from specific game 
+     */
+    private function kickOutAllUsersFromGame($gameId){
+        $usersInGame = UserInGameModel::where('game_id', $gameId)->get();
+        foreach ($usersInGame as $user) {
+            UserInGameModel::where('user_id', $user->user_id)->delete();
+        }
+        return true;
     }
    
 }

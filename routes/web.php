@@ -41,6 +41,7 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
 
  Route::controller(AdminController::class)
     ->prefix('admin')
+    //->middleware('auth')
     ->group(function(){
         //Main dashboard
         Route::get('/','index');
@@ -57,4 +58,5 @@ Route::get('/gameboard', [GameBoardController::class, 'index'])->name('gameBoard
         Route::post('/games','createNewGame')->name('createNewGame');
         Route::put('/games/start/{id}','startGame')->name('startGame');
         Route::put('/games/cancel/{id}','cancelGame')->name('cancelGame');
+        Route::delete('/games/delete/{id}','deleteGame')->name('deleteGame');
     });
