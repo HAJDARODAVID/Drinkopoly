@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="row">{{ $user->getPlayerInfo->id }}</th>
                                     <td>{{ $user->getPlayerInfo->name }}</td>
-                                    <td>x</td>
+                                    <td>@livewire('online-status-indicator', ['user' => $user->getPlayerInfo->id], key('gameDetailsTable-'.$user->id))</td>
                                 </tr>  
                             @endforeach
                         </tbody>

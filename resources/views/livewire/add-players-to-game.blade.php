@@ -28,7 +28,7 @@
                                 <tr>
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
-                                    <td>x</td>
+                                    <td>@livewire('online-status-indicator', ['user' => $user->id], key('addPlayerTable-'.$user->id))</td>
                                     <td> @isset($user->getPlayersGame->game_id) {{ $user->getPlayersGame->game_id }} @endisset</td>
                                     <td>
                                         <button class="btn btn-success btn-sm" 

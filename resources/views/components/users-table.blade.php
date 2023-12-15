@@ -16,7 +16,7 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>x</td>
+                    <td>@livewire('online-status-indicator', ['user' => $user->id], key('userTable-'.$user->id))</td>
                     <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="{{ Route('user', $user->id) }}" class="btn btn-primary">EDIT</a>
